@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:16:46 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/05 15:34:37 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:33:36 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,28 @@
 void Contact::createContact()
 {
 	std :: cout << "Enter first name: ";
-	std :: cin >> first_name;
-
+	getline(std::cin, first_name);
+	if (first_name.empty() == true)
+	{
+		std :: cout << "First name can't be empty" << std :: endl;
+		return;
+	}
 	std :: cout << "Enter last name: ";
-	std :: cin >> last_name;
-
+	getline(std::cin, last_name);
+	if(last_name.empty() == true)
+		last_name = " ";
 	std :: cout << "Enter nickname: ";
-	std :: cin >> nik;
-
+	getline(std::cin, nik);
+	if (nik.empty() == true)
+		nik = " ";
 	std :: cout << "Enter phone number: ";
-	std :: cin >> phone_number;
-
+	getline(std::cin, phone_number);
+	if (phone_number.empty() == true)
+		phone_number = " ";
 	std :: cout << "Enter darkest secret ";
-	std :: cin >> darkest_secret;
+	getline(std::cin, darkest_secret);
+	if (darkest_secret.empty() == true)
+		darkest_secret = " ";
 }
 
 void	Contact :: printContactByAtribute()
@@ -47,7 +56,6 @@ void	Contact :: printContactByAtribute()
 	PhoneNumber = getPhoneNumber();
 	DarkestSecret = getDarkestSecret();
 	
-
 	std::cout<< "|" << std::setw(10) << FirstName << "|";
 	std::cout << std::setw(10) << LastName << "|";
 	std::cout << std::setw(10) << NickName << "|";

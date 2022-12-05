@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:17:13 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/05 15:50:31 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/05 20:40:46 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ PhoneBook :: ~PhoneBook()
 
 void	PhoneBook :: addContact()
 {
-	std::cout << "\x1B[2J\x1B[H";
 	contacts[index].createContact();
 	index++;
-	std :: cout << index << std :: endl;
 	if (index == 8)
 		index = 0;
 }
@@ -50,22 +48,23 @@ void PhoneBook :: get_info()
 
 void	PhoneBook :: searchContact()
 {
-	std::cout << "\x1B[2J\x1B[H";
 	printHeader();
-	printcontacts(0);
-	if (contacts[0].getFirstName() == "" && contacts[0].getLastName() == "" && contacts[0].getNik() == "")
+	if ((index == 0) && contacts[1].getFirstName().empty() == true)
 	{
-		std::cout << "PhoneBook is empty" << std::endl;
+		std :: cout << "|           PhoneBook is empty              |" << std::endl;
+		std :: cout << "+----------+----------+----------+----------+" << std :: endl;
 		return ;
 	}
-	std :: cout << "Enter index of contact: ";
-	int i;
-	std :: cin >> i;
-	i -= 1;
-	if (i >= 0 && i <= 8)
-		contacts[i].printContactByAtribute();
+	int i = 0;
+	std :: string str;
+	printcontacts(0);
+	std :: cout << "Enter index of contact: " << std :: endl;
+	getline(std::cin, str);
+	i = atoi(str.c_str());
+	if (i > 0 && i < 9 && i <= index)
+		contacts[i - 1].printContactByAtribute();
 	else
-		std::cout << "Wrong index" << std::endl;	
+		std::cout << "Wrong index" << std::endl;
 }
 
 
@@ -100,11 +99,15 @@ void	PhoneBook :: printcontacts(int num)
 		std :: cout << std :: setw(10) << NickName << "|";
 	std :: cout << std :: endl;
 	std :: cout << "+----------+----------+----------+----------+" << std :: endl;
-	if (contacts[i + 1].getFirstName().empty())
-		return ;
-	else
+	if (i > index)
 	{
-		i += 1;
+		i = 0;		
 		printcontacts(i);
 	}
+	else if (i < index)
+	{
+		printcontacts(i + 1);
+	}
+	else
+		return ;
 }
