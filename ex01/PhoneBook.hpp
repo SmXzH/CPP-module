@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:17:26 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/04 23:18:37 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:53:39 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
+#include <stdlib.h>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -22,10 +24,9 @@ class PhoneBook
 	private:
 		int		index;
 		void	get_info();
-		Contact	contacts[8];
-		//void	printContact;
+		Contact	contacts[9];
 		void	printHeader();
-		void	printcontacts();
+		void	printcontacts(int num);
 	public:
 		PhoneBook();
 		~PhoneBook();

@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:16:58 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/11/30 20:59:43 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:07:07 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <stdlib.h>
 //#include "PhoneBook.hpp"
 
 class Contact
@@ -30,6 +31,7 @@ public:
 	~Contact() {}
 
 	void	createContact();
+	void	printContactByAtribute();
 	std :: string getFirstName();
 	std :: string getLastName();
 	std :: string getNik();
