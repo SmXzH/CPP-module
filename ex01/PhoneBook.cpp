@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:17:13 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/05 20:40:46 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:00:21 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 PhoneBook :: PhoneBook()
 {
 	index = 0;
+	flag = 0;
 	get_info();
 }
 
@@ -25,10 +26,20 @@ PhoneBook :: ~PhoneBook()
 
 void	PhoneBook :: addContact()
 {
-	contacts[index].createContact();
-	index++;
+	static int	i = 0;
+	
 	if (index == 8)
-		index = 0;
+	{
+		contacts[i].createContact();
+		i++;
+		if (i == 8)
+			i = 0;
+	}
+	else
+	{
+		contacts[index].createContact();
+		index++;
+	}
 }
 
 void PhoneBook :: get_info()
@@ -49,9 +60,9 @@ void PhoneBook :: get_info()
 void	PhoneBook :: searchContact()
 {
 	printHeader();
-	if ((index == 0) && contacts[1].getFirstName().empty() == true)
+	if (flag == 0 && index == 0)
 	{
-		std :: cout << "|           PhoneBook is empty              |" << std::endl;
+		std::cout << "|           PhoneBook is empty              |" << std::endl;
 		std :: cout << "+----------+----------+----------+----------+" << std :: endl;
 		return ;
 	}
@@ -99,15 +110,12 @@ void	PhoneBook :: printcontacts(int num)
 		std :: cout << std :: setw(10) << NickName << "|";
 	std :: cout << std :: endl;
 	std :: cout << "+----------+----------+----------+----------+" << std :: endl;
-	if (i > index)
-	{
-		i = 0;		
-		printcontacts(i);
-	}
-	else if (i < index)
-	{
-		printcontacts(i + 1);
-	}
-	else
+
+	if (i == 7)
 		return ;
+	else if (i == index - 1)
+		return ;
+	else
+		printcontacts(i + 1);
+	
 }

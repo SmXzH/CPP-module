@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:16:46 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/05 19:33:36 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:04:12 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,55 @@
 void Contact::createContact()
 {
 	std :: cout << "Enter first name: ";
-	getline(std::cin, first_name);
-	if (first_name.empty() == true)
+	while (first_name.empty() == true)
 	{
-		std :: cout << "First name can't be empty" << std :: endl;
-		return;
+		getline(std::cin, first_name);
+		if (first_name.empty() == true)
+		{
+			std :: cout << "First name can't be empty" << std :: endl;
+			std :: cout << "Enter first name: ";
+		}
 	}
 	std :: cout << "Enter last name: ";
-	getline(std::cin, last_name);
-	if(last_name.empty() == true)
-		last_name = " ";
+	while (last_name.empty() == true)
+	{
+		getline(std::cin, last_name);
+		if (last_name.empty() == true)
+		{
+			std :: cout << "First last can't be empty" << std :: endl;
+			std :: cout << "Enter last name: ";
+		}
+	}
 	std :: cout << "Enter nickname: ";
-	getline(std::cin, nik);
-	if (nik.empty() == true)
-		nik = " ";
+	while (nik.empty() == true)
+	{
+		getline(std::cin, nik);
+		if (nik.empty() == true)
+		{
+			std :: cout << "Nickname can't be empty" << std :: endl;
+			std :: cout << "Enter nickname : ";
+		}
+	}
 	std :: cout << "Enter phone number: ";
-	getline(std::cin, phone_number);
-	if (phone_number.empty() == true)
-		phone_number = " ";
+	while (phone_number.empty() == true)
+	{
+		getline(std::cin, phone_number);
+		if (phone_number.empty() == true)
+		{
+			std :: cout << "Phone number can't be empty" << std :: endl;
+			std :: cout << "Enter first name: ";
+		}
+	}
 	std :: cout << "Enter darkest secret ";
-	getline(std::cin, darkest_secret);
-	if (darkest_secret.empty() == true)
-		darkest_secret = " ";
+	while (darkest_secret.empty() == true)
+	{
+		getline(std::cin, darkest_secret);
+		if (darkest_secret.empty() == true)
+		{
+			std :: cout << "Darkest secret can't be empty" << std :: endl;
+			std :: cout << "Darkest secret: ";
+		}
+	}
 }
 
 void	Contact :: printContactByAtribute()

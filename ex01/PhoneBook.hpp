@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:17:26 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/05 17:21:48 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:29:13 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class PhoneBook
 {
 	private:
 		int		index;
+		int		flag;
 		void	get_info();
 		Contact	contacts[8];
 		void	printHeader();
