@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sam <sam@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:16:46 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/07 22:35:43 by sam              ###   ########.fr       */
+/*   Updated: 2022/12/08 16:51:57 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,26 @@
 #include <iostream>
 #include <iomanip>
 #include "Contact.hpp"
+
+int	Contact::ft_digit(std::string str)
+{
+	int i = 0;
+	int len = str.length();
+	if (len < 9 || len > 11)
+	{
+		std::cout << "Wrong lenth of number" << std::endl;
+		return (1);
+	}
+	while (str[i])
+	{
+		if (isdigit(str[i]) == 0){
+			std::cout << "Number need to be digit" << std::endl;
+			return(1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 void Contact::createContact()
 {
@@ -52,12 +72,17 @@ void Contact::createContact()
 	}
 	std :: cout << "Enter phone number: ";
 	getline(std::cin, phone_number);
+	while(ft_digit(phone_number) == 1)
+	{
+		std :: cout << "Enter phone number: ";
+		getline(std::cin, phone_number);
+	}
 	while (phone_number.empty() == true)
 	{
 		if (phone_number.empty() == true)
 		{
 			std :: cout << "Phone number can't be empty" << std :: endl;
-			std :: cout << "Enter first name: ";
+			std :: cout << "Enter phone number: ";
 		}
 		getline(std::cin, phone_number);
 	}

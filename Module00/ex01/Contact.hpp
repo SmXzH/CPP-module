@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:16:58 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/05 18:33:21 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:31:54 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ public:
 
 	void	createContact();
 	void	printContactByAtribute();
+	int		ft_digit(std::string str);
 	std :: string getFirstName();
 	std :: string getLastName();
 	std :: string getNik();
