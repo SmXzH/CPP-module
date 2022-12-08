@@ -22,8 +22,6 @@ int main()
 				break;
 			else
 				std::cout << "Wrong command" << std::endl;
-		//clearerr(stdin);
-		//std :: cin.clear();
 	}
 	return (0);
 }
