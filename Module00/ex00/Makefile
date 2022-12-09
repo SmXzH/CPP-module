@@ -9,7 +9,7 @@ NAME = megaphone
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	clang++ -Wall -Wextra -Werror -std=c++98 $(OBJ) -o $(NAME)
+	c++ -Wall -Wextra -Werror -std=c++98 $(OBJ) -o $(NAME)
 
 %.o: %.cpp
 	clang++ -Wall -Wextra -Werror -std=c++98 -c $< -o $@

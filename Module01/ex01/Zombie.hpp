@@ -1,17 +1,15 @@
 #include <string>
 #include <iostream>
 
-#define N 4
-
 class Zombie
 {
 private:
-	std::string name;
+	std::string _name;
 public:
-	Zombie();
-	Zombie(std::string name);
+	Zombie(){};
 	~Zombie();
-	void announce(std :: string name);
+	void announce();
+	void setZombie(std::string name);
 };
 
-Zombie* zombieHorde( int N, std::string name );
+Zombie* zombieHorde( int number, std::string name );

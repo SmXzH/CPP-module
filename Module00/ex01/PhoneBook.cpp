@@ -6,7 +6,7 @@
 /*   By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:17:13 by szhakypo          #+#    #+#             */
-/*   Updated: 2022/12/06 18:00:21 by szhakypo         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:30:13 by szhakypo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ PhoneBook :: ~PhoneBook()
 void	PhoneBook :: addContact()
 {
 	static int	i = 0;
-	
+
 	if (index == 8)
 	{
 		contacts[i].createContact();

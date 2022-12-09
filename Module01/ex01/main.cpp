@@ -1,12 +1,10 @@
 #include "Zombie.hpp"
 
 int main(){
-	Zombie Bar[N];
+	Zombie *Bar;
 
-	Bar = zombieHorde(N, "Foo");
-	for (int i = 0; i < N; i++)
-		Bar[i].announce("Bar");
+	Bar = zombieHorde(4, "Foo");
 
-	delete [n] Bar;
+	delete [] Bar;
 	return 0;
 }
