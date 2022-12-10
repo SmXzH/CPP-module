@@ -1,6 +1,11 @@
 #include <string>
 #include <iostream>
 
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
+
+
+
 class Weapon
 {
 private:
@@ -8,6 +13,8 @@ private:
 public:
 	Weapon(std::string type);
 	~Weapon();
-	std::string &getType();
+	const std::string &getType();
 	void setType(std::string type);
 };
+
+#endif

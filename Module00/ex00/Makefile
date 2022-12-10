@@ -1,5 +1,3 @@
-# Path: module00/ex00/Makefile
-
 SRC = megaphone.cpp
 
 OBJ = $(SRC:.cpp=.o)
@@ -12,7 +10,7 @@ $(NAME): $(OBJ)
 	c++ -Wall -Wextra -Werror -std=c++98 $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	clang++ -Wall -Wextra -Werror -std=c++98 -c $< -o $@
+	c++ -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

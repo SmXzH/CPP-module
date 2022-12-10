@@ -1,35 +1,54 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: szhakypo <szhakypo@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/18 14:35:46 by szhakypo          #+#    #+#              #
-#    Updated: 2022/12/04 22:52:52 by szhakypo         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME 				= phonebook
+CC 					= c++
+FLAGS 				= -Wall -Werror -Wextra -std=c++98
+INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
-NAME = phonebook
 
-SRC = Contact.cpp main.cpp PhoneBook.cpp
+HEADERS_DIRECTORY 	= ./includes/
+HEADERS_LIST 		= Contact.hpp PhoneBook.hpp
+HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+SOURCES_DIRECTORY 	= ./sources/
+SOURCES_LIST 		= main.cpp Contact.cpp PhoneBook.cpp
 
-HEADER = Contact.hpp Phonebook.hpp
+SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
-OBJ = $(SRC:.cpp=.o)
+OBJECTS_DIRECTORY 	= objects/
+OBJECTS_LIST 		= $(patsubst %.cpp, %.o, $(SOURCES_LIST))
+OBJECTS				= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
+
+# COLORS
+GREEN 				= \033[0;32m
+RED 				= \033[0;31m
+RESET 				= \033[0m
 
 all: $(NAME)
-$(NAME): $(OBJ) $(HEADER)
-	clang++ $(FLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HEADER)
-	clang++ $(FLAGS) -c $< -o $@
+bonus: all
+
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
+	@$(CC) $(FLAGS) $(OBJECTS) $(INCLUDES) -o $(NAME)
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
+	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	@echo ".\c"
 
 clean:
-	rm -f $(OBJ)
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
+	@rm -f $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
+
+.PHONY: all bonus clean fclean re

@@ -1,45 +1,59 @@
-NAME = weapon
-
-SRC = main.cpp \
-	  Weapon.cpp \
-	  HumanA.cpp \
-	  HumanB.cpp \
+NAME 				= weapon
+CC 					= g++
+FLAGS 				= -Wall -Werror -Wextra -std=c++98
+INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
 
-HEADERS_DIRECTORY 	= ./include/
+HEADERS_DIRECTORY 	= ./includes/
+HEADERS_LIST 		= Weapon.hpp \
+						HumanA.hpp \
+						HumanB.hpp
+HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_FILES))
+SOURCES_DIRECTORY 	= ./sources/
+SOURCES_LIST 		= main.cpp \
+					  Weapon.cpp \
+					  HumanA.cpp \
+					  HumanB.cpp
 
-HEADERS_FILES 		= Weapon.hpp \
-					  HumanA.hpp \
-					  HumanB.hpp \
+SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
+OBJECTS_DIRECTORY 	= objects/
+OBJECTS_LIST 		= $(patsubst %.cpp, %.o, $(SOURCES_LIST))
+OBJECTS				= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
-OBJ_DIRECTORY = ./obj/
-
-OBJ = $(addprefix $(OBJ_DIRECTORY), $(SRC:.cpp=.o))
-
-CC = clang++
-
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+# COLORS
+GREEN 				= \033[0;32m
+RED 				= \033[0;31m
+RESET 				= \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ_DIRECTORY) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+bonus: all
 
-$(OBJ_DIRECTORY):
-	mkdir -p $(OBJ_DIRECTORY)
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
+	@$(CC) $(FLAGS) $(OBJECTS) $(INCLUDES) -o $(NAME)
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 
-$(OBJ_DIRECTORY)%.o: %.cpp $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
+	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	@echo ".\c"
 
 clean:
-	rm -rf $(OBJ_DIRECTORY)
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

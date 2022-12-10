@@ -1,26 +1,54 @@
-NAME = zombieHorde
+NAME 				= ZombieHorde
+CC 					= g++
+FLAGS 				= -Wall -Werror -Wextra -std=c++98
+INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+HEADERS_DIRECTORY 	= ./includes/
+HEADERS_LIST 		= Zombie.hpp
+HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-CXX = c++
+SOURCES_DIRECTORY 	= ./sources/
+SOURCES_LIST 		= main.cpp ZombieHorde.cpp Zombie.cpp
 
-CXFLAGS = -Wall -Wextra -Werror -std=c++98
+SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
-RM = rm -f
+OBJECTS_DIRECTORY 	= objects/
+OBJECTS_LIST 		= $(patsubst %.cpp, %.o, $(SOURCES_LIST))
+OBJECTS				= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
+
+# COLORS
+GREEN 				= \033[0;32m
+RED 				= \033[0;31m
+RESET 				= \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXFLAGS) $(OBJS) -o $(NAME)
+bonus: all
+
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
+	@$(CC) $(FLAGS) $(OBJECTS) $(INCLUDES) -o $(NAME)
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.cpp $(HEADERS)
+	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	@echo ".\c"
 
 clean:
-	$(RM) $(OBJS)
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
+	@rm -f $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
