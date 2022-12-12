@@ -1,8 +1,4 @@
-#include <string>
-#include <iostream>
-#include <fstream>
-
-//#include "Replace.hpp"
+#include "Replace.hpp"
 
 int main(int argc, char **argv)
 {
