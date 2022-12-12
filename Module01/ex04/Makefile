@@ -1,20 +1,15 @@
-NAME 				= weapon
+NAME 				= replace
 CC 					= c++
 FLAGS 				= -Wall -Werror -Wextra -std=c++98
 INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
 
 HEADERS_DIRECTORY 	= ./includes/
-HEADERS_LIST 		= Weapon.hpp \
-						HumanA.hpp \
-						HumanB.hpp
+HEADERS_LIST 		= Replace.hpp
 HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY 	= ./sources/
-SOURCES_LIST 		= main.cpp \
-					  Weapon.cpp \
-					  HumanA.cpp \
-					  HumanB.cpp
+SOURCES_LIST 		= main.cpp
 
 SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
