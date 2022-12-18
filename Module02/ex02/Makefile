@@ -5,7 +5,7 @@ INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
 
 HEADERS_DIRECTORY 	= ./includes/
-HEADERS_LIST 		= Fixed.hpp
+HEADERS_LIST 		= fixed.hpp
 HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY 	= ./sources/

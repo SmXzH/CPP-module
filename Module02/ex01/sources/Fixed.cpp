@@ -1,102 +1,67 @@
-#include "fixed.hpp"
+#include "Fixed.hpp"
+
 
 Fixed::Fixed(){
-    //std::cout << "Constructor"
+    std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::~Fixed(){
-
+    std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &src){
-    std::cout << "Copy"; << std::endl;
-    this->_flp = src._flp;
+Fixed::Fixed(const Fixed &object){
+    this->_FPnumberValue = object.getRawBits();
+    std::cout << "Copy constructor called" << std::endl;
 }
 
-Fixed Fixed::operator=(const Fixed &src){
-    Fixed tmp;
-    tmp->_flp = src.getNum();
-    std::cout << "OPERATOR = "; << std::endl;
-    return (Fixed);
+Fixed::Fixed(int const &raw){
+	std::cout << "Int constructor called" << std::endl;
+	this->setRawBits(raw);
 }
 
-void Fixed::setNum(const float num){
-    this->_flp = num;
+Fixed::Fixed (float const &raw){
+	std::cout << "Float constructor called" << std::endl;
+	this->setRawBits(raw);
 }
 
-float Fixed::getNum() const{
-    return(this->_flp);
+Fixed Fixed::operator=(const Fixed &obj)
+{
+    std::cout << "Copy assignation operator called" << std::endl;
+    this->_FPnumberValue = obj.getRawBits();
+    return (*this);
+}
+
+/*=========================================================================================*/
+
+int Fixed::getRawBits( void ) const {
+    std::cout << "getRawBits member function called" << std::endl;
+    return(this->_FPnumberValue);
+}
+
+void Fixed::setRawBits( int const raw ){
+    std::cout << "setRawBits member function called" << std::endl;
+    this->_FPnumberValue = raw << this->_numberOfFractional;
+}
+
+void Fixed::setRawBits(float const raw){
+	std::cout << "setRawBits member function called" << std::endl;
+    this->_FPnumberValue = round(raw * (1 << this->_numberOfFractional));
 }
 
 
-bool Fixed::operator>(const Fixed &b){
+/*=========================================================================================*/
 
-    if(this->_flp > b._flp)
-        return (true);
-    else
-        return(false);
+float   Fixed::toFloat( void ) const{
+    return ((float)(this->_FPnumberValue) / (float)(1 << this->_numberOfFractional));
 }
 
-bool Fixed::operator<(const Fixed &b){
-
-    if(this->_flp < b._flp)
-        return (true);
-    else
-        return(false);
+int     Fixed::toInt( void ) const{
+    return (this->_FPnumberValue >> this->_numberOfFractional);
 }
 
-bool Fixed::operator>=(const Fixed &b){
+/*=========================================================================================*/
 
-    if(this->_flp >= b._flp)
-        return (true);
-    else
-        return(false);
-}
-
-bool Fixed::operator<=(const Fixed &b){
-
-    if(this->_flp <= b._flp)
-        return (true);
-    else
-        return(false);
-}
-
-bool Fixed::operator==(const Fixed &b){
-
-    if(this->_flp == b._flp)
-        return (true);
-    else
-        return(false);
-}
-
-bool Fixed::operator!=(const Fixed &b){
-
-    if(this->_flp != b._flp)
-        return (true);
-    else
-        return(false);
-}
-
-Fixed Fixed::operator+(const Fixed &b){
-    Fixed retVal;
-    retVal = this->_flp + b._flp;
-    return (retVal);
-}
-
-Fixed Fixed::operator-(const Fixed &b){
-    Fixed retVal;
-    retVal = this->_flp - b._flp;
-    return (retVal);
-}
-
-Fixed Fixed::operator*(const Fixed &b){
-    Fixed retVal;
-    retVal = this->_flp * b._flp;
-    return (retVal);
-}
-
-Fixed Fixed::operator/(const Fixed &b){
-    Fixed retVal;
-    retVal = this->_flp / b._flp;
-    return (retVal);
+std::ostream& operator<<(std::ostream& os, const Fixed &src){
+    os << src.toFloat();
+    return os;
 }

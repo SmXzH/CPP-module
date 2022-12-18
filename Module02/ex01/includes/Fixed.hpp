@@ -1,60 +1,50 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
-
 #include <string>
 #include <iostream>
-/*
-• The 6 comparison operators: >, <, >=, <=, == and !=.
-• The 4 arithmetic operators: +, -, *, and /.
-• The 4 increment/decrement (pre-increment and post-increment, pre-decrement and
-post-decrement) operators, that will increase or decrease the fixed-point value from
-the smallest representable ϵ such as 1 + ϵ > 1.
-Add these four public overloaded member functions to your class:
-• A static member function min that takes as parameters two references on fixed-point
-numbers, and returns a reference to the smallest one.
-• A static member function min that takes as parameters two references to constant
-fixed-point numbers, and returns a reference to the smallest one.
-• A static member function max that takes as parameters two references on fixed-point
-numbers, and returns a reference to the greatest one.
-• A static member function max that takes as parameters two references to constant
-fixed-point numbers, and returns a reference to the greatest one.*/
 
+/*
+The previous exercise was a good start but our class is pretty useless. It can only
+represent the value 0.0.
+Add the following public constructors and public member functions to your class:
+• A constructor that takes a constant integer as a parameter.
+It converts it to the corresponding fixed-point value. The fractional bits value is
+initialized to 8 like in exercise 00.
+• A constructor that takes a constant floating-point number as a parameter.
+It converts it to the corresponding fixed-point value. The fractional bits value is
+initialized to 8 like in exercise 00.
+• A member function float toFloat( void ) const;
+that converts the fixed-point value to a floating-point value.
+• A member function int toInt( void ) const;
+that converts the fixed-point value to an integer value.
+And add the following function to the Fixed class files:
+• An overload of the insertion («) operator that inserts a floating-point representation
+of the fixed-point number into the output stream object passed as parameter
+*/
 class Fixed
 {
 private:
-
-    float _flp;
-
-
-
-
+    int         		_FPnumberValue;
+    static const int  	_numberOfFractional = 8;
 public:
+    int getRawBits( void ) const;
+    void setRawBits( int const raw );
+	void setRawBits(float const raw);
+
+
+	float 	toFloat() const;
+	int		toInt() const;
+
+	Fixed(int const &raw);
+	Fixed(float const &raw);
     Fixed();
-    Fixed(const Fixed &src);
-    Fixed operator=(const Fixed &src);
     ~Fixed();
-
-    float   getNum()const ;
-    void    setNum(const float num);
-
-    bool operator>(const Fixed &b);
-    bool operator<(const Fixed &b);
-    bool operator>=(const Fixed &b);
-    bool operator<=(const Fixed &b);
-    bool operator!=(const Fixed &b);
-    bool operator==(const Fixed &b);
-
-    Fixed operator+(const Fixed &b);
-    Fixed operator-(const Fixed &b);
-    Fixed operator*(const Fixed &b);
-    Fixed operator/(const Fixed &b);
-
-    // float min(float &n1, float &n2);
-    // float min(float &n1, float &n2)const;
-    // float max(float &n1, float &n2);
-    // float max(float &n1, float &n2) const;
+    Fixed(const Fixed &object);
+    Fixed operator=(const Fixed &object);
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed &src);
 
 
 #endif

@@ -8,7 +8,7 @@ class Fixed
 {
 private:
     int         _FPnumberValue;
-    static int  _numberOfFractional;
+    static const int  _numberOfFractional = 8;
 public:
     int getRawBits( void ) const;
     void setRawBits( int const raw );
