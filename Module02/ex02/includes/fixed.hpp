@@ -11,9 +11,6 @@ private:
 
     float _flp;
 
-
-
-
 public:
     Fixed();
     Fixed(const Fixed &src);
