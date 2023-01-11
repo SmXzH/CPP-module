@@ -16,6 +16,7 @@ ClapTrap::ClapTrap(std::string name){
     this->_energy = 20;
 }
 
+
 ClapTrap::ClapTrap(const ClapTrap &obj){
     this->_name = obj._name;
     this->_health = obj._health;

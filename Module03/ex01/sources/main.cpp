@@ -1,0 +1,23 @@
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+
+int main(){
+
+    ScavTrap test1("Pyke");
+
+	std::cout << std::endl;
+	std::cout << "HP: " << test1.getHP() << std::endl;
+	std::cout << "EP: " << test1.getEnergy() << std::endl;
+	std::cout << "AD: " << test1.getAttack() << std::endl;
+	std::cout << std::endl;
+	test1.attack("fish");
+	std::cout << std::endl;
+	test1.takeDamage(56);
+	std::cout << std::endl;
+	test1.beRepair(14);
+	std::cout << std::endl;
+	test1.guardGate();
+	std::cout << std::endl;
+	return 0;
+
+}

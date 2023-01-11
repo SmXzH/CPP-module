@@ -1,8 +1,66 @@
 #include "ClapTrap.hpp"
 
 int main(){
-    ClapTrap tmp;
-    ClapTrap tmp2;
+	std::cout << std::endl;
+	std::cout << "======DEFAULT CONTRUCTOR TEST==========" << std::endl;
+	ClapTrap Patrick;
+	Patrick.attack("fish");
+	Patrick.setName("Patrick");
+	Patrick.attack("fish");
+	std::cout << "========================================" << std::endl;
+	std::cout << std::endl;
 
+	std::cout << "========STRING CONTRUCTOR TEST==========" << std::endl;
+	ClapTrap Mr_Bin("Mr.Bin");
+	Mr_Bin.attack("fish");
+	std::cout << "========================================" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "==========COPY CONTRUCTOR TEST==========" << std::endl;
+	ClapTrap Sam(Mr_Bin);
+	Sam.attack("fish");
+	Sam.setName("Sam");
+	std::cout << "========================================" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "========STRING CONTRUCTOR TEST==========" << std::endl;
+	ClapTrap Duck = Sam;
+	Duck.attack("fish");
+	std::cout << "========================================" << std::endl;
+	std::cout << std::endl;
+
+
+	std::cout << "========FUNCTIONALITTY TEST=============" << std::endl;
+	std::cout << "Pyke will runout of energy" << std::endl;
+	std::cout << "Sona will die" << std::endl;
+	ClapTrap test1("Pyke");
+	ClapTrap test2("Sona");
+	std::cout << std::endl;
+	test1.attack("wall");
+	test1.takeDamage(5);
+	test1.beRepair(3);
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.attack("wall");
+	test1.beRepair(3);
+	std::cout << std::endl;
+	std::cout << std::endl;
+	test2.takeDamage(5);
+	test2.beRepair(100);
+	test2.attack("door");
+	test2.takeDamage(50);
+	test2.takeDamage(50);
+	test2.takeDamage(50);
+	test2.beRepair(100);
+	test2.attack("door");
+	std::cout << std::endl;
+	std::cout << "========================================" << std::endl;
+    return 0;
 
 }
