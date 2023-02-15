@@ -9,8 +9,12 @@ class Fixed
 {
 private:
 
+<<<<<<< HEAD
     int         		_FPnumberValue;
     static const int  	_numberOfFractional = 8;
+=======
+    float _flp;
+>>>>>>> aea9e884f4c334ab627a93024f113972ab093414
 
 public:
 

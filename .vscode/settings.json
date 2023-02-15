@@ -49,6 +49,11 @@
     "system_error": "cpp",
     "type_traits": "cpp",
     "typeinfo": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "__bits": "cpp",
+    "clocale": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "variant": "cpp"
   }
 }
