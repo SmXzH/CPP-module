@@ -7,8 +7,8 @@
 class Fixed
 {
 private:
-    int         _FPnumberValue;
-    static const int  _numberOfFractional = 8;
+    int         		_FPnumberValue;
+    static const int  	_numberOfFractional = 8;
 public:
     int getRawBits( void ) const;
     void setRawBits( int const raw );
@@ -17,7 +17,6 @@ public:
     ~Fixed();
     Fixed(const Fixed &object);
     Fixed operator=(const Fixed &object);
-    //Fixed(float);
 };
 
 #endif

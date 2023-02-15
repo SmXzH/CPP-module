@@ -1,6 +1,5 @@
 #include "Fixed.hpp"
 
-
 Fixed::Fixed(){
     std::cout << "Default constructor called" << std::endl;
 }
@@ -11,17 +10,8 @@ Fixed::~Fixed(){
 
 Fixed::Fixed(const Fixed &object){
     this->_FPnumberValue = object.getRawBits();
+    //*this = object;
     std::cout << "Copy constructor called" << std::endl;
-}
-
-Fixed::Fixed(int const &raw){
-	std::cout << "Int constructor called" << std::endl;
-	this->setRawBits(raw);
-}
-
-Fixed::Fixed (float const &raw){
-	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits(raw);
 }
 
 Fixed Fixed::operator=(const Fixed &obj)
@@ -31,37 +21,47 @@ Fixed Fixed::operator=(const Fixed &obj)
     return (*this);
 }
 
-/*=========================================================================================*/
+/*---------------------------------------------------------------
+◦ A member function int getRawBits( void ) const;
+that returns the raw value of the fixed-point value.
+---------------------------------------------------------------*/
 
 int Fixed::getRawBits( void ) const {
     std::cout << "getRawBits member function called" << std::endl;
     return(this->_FPnumberValue);
 }
 
+ /*---------------------------------------------------------------
+ ◦ A member function void setRawBits( int const raw );
+that sets the raw value of the fixed-point number.
+-----------------------------------------------------------------*/
+
 void Fixed::setRawBits( int const raw ){
     std::cout << "setRawBits member function called" << std::endl;
-    this->_FPnumberValue = raw << this->_numberOfFractional;
+    this->_FPnumberValue = raw;
 }
 
-void Fixed::setRawBits(float const raw){
-	std::cout << "setRawBits member function called" << std::endl;
-    this->_FPnumberValue = round(raw * (1 << this->_numberOfFractional));
+//--------------------------------------------------------------------
+
+Fixed::Fixed (const int num){
+    _FPnumberValue = num << _numberOfFractional;
+    std::cout << "Int constructor called" << std::endl;
 }
 
-
-/*=========================================================================================*/
+Fixed::Fixed ( const float num){
+    _FPnumberValue = (int)roundf(num * (1 << _numberOfFractional));
+    std::cout << "Float constructor called" << std::endl;
+}
 
 float   Fixed::toFloat( void ) const{
-    return ((float)(this->_FPnumberValue) / (float)(1 << this->_numberOfFractional));
+    return((float)_FPnumberValue / (1 << _FPnumberValue));
 }
 
-int     Fixed::toInt( void ) const{
-    return (this->_FPnumberValue >> this->_numberOfFractional);
+int     Fixed::toInt( void ) const {
+    return(_FPnumberValue >> 8);
 }
 
-/*=========================================================================================*/
-
-std::ostream& operator<<(std::ostream& os, const Fixed &src){
-    os << src.toFloat();
-    return os;
+std::ostream& operator<<(std::ostream &out, const Fixed &obj){
+    out << obj.toFloat();
+    return (out);
 }

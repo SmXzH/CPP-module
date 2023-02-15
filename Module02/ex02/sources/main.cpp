@@ -1,21 +1,47 @@
-#include "fixed.hpp"
+#include "Fixed.hpp"
 
-int main()
+int main( void )
 {
-    Fixed a;
-    Fixed b;
-    Fixed c;
+	Fixed		a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-    a.setNum(1.4f);
-    b.setNum(2.4f);
-    c = a / b;
-    std::cout << a.getNum() << std::endl;
-    std::cout << b.getNum() << std::endl;
-    std::cout << c.getNum() << std::endl;
-    if(a <= b)
-        std::cout << "Lets goooooo!"<< std::endl;
-    else
-        std::cout << "Dolbaeb"<< std::endl;
+	std::cout << std::endl << "=== ++ test ===" << std::endl;
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
 
-    return (0);
+	std::cout << std::endl << "=== min/max ===" << std::endl;
+	std::cout << "a:\t" << a << std::endl;
+	std::cout << "b:\t" << b << std::endl;
+	std::cout << "max:\t" << Fixed::max( a, b ) << std::endl;
+	std::cout << "min:\t" << Fixed::min( a, b ) << std::endl;
+
+	std::cout << std::endl << "=== -- test ===" << std::endl;
+	std::cout << a << std::endl;
+	std::cout << --a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a-- << std::endl;
+	std::cout << a << std::endl;
+
+	std::cout << std::endl << "=== c/d test ===" << std::endl;
+	Fixed		c( 100 );
+	Fixed		d( 42.42f );
+	std::cout << "c:\t" << c << std::endl;
+	std::cout << "d:\t" << d << std::endl;
+	std::cout << c << " < " << d << ":\t " << (c < d) << std::endl;
+	std::cout << c << " > " << d << ":\t " << (c > d) << std::endl;
+	std::cout << c << " <= " << d << ":\t " << (c <= d) << std::endl;	std::cout << "a:\t" << a << std::endl;
+	std::cout << "b:\t" << b << std::endl;
+	std::cout << c << " >= " << d << ":\t " << (c >= d) << std::endl;
+	std::cout << c << " == " << d << ":\t " << (c == d) << std::endl;
+	std::cout << c << " != " << d << ":\t " << (c != d) << std::endl;
+	std::cout << c << " + " << d << ":\t " << (c + d) << std::endl;
+	std::cout << c << " - " << d << ":\t " << (c - d) << std::endl;
+	std::cout << c << " * " << d << ":\t " << (c * d) << std::endl;
+	std::cout << c << " / " << d << ":\t " << (c / d) << std::endl;
+
+	return 0;
+
 }
