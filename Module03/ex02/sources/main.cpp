@@ -1,9 +1,7 @@
-#include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 int main() {
-
-	ScavTrap test1("Sam");
+	FragTrap test1("Sam");
 
 	std::cout << std::endl;
 	std::cout << "HP: " << test1.getHP() << std::endl;
@@ -16,7 +14,7 @@ int main() {
 	std::cout << std::endl;
 	test1.beRepair(14);
 	std::cout << std::endl;
-	test1.guardGate();
+	test1.highFivesGuys();
 	std::cout << std::endl;
 	return 0;
 }

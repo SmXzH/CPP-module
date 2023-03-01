@@ -13,5 +13,4 @@ public:
 
 	//---Misc---
 	void guardGate();
-
 };

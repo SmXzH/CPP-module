@@ -48,8 +48,6 @@ ScavTrap::ScavTrap(std::string name)
 
 void ScavTrap::guardGate()
 {
-	if (this->getHP() <= 0)
-		return ;
 	std::cout << "[ScavTrap] is now in Gate keeper mode" << std:: endl;
 }
 

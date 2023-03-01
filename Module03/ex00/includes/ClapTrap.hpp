@@ -34,7 +34,7 @@ public:
     void attack(const std::string &target);
     void takeDamage(unsigned int amount);
     void beRepair(unsigned int amount);
-    
+
 };
 
 // void attack(const std::string &target);
