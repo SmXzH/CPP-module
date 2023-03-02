@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Brain.hpp"
 //#include "WrongAnimal.hpp"
 //#include "WrongCat.hpp"
 
@@ -15,7 +16,7 @@ public:
 	Animal();
 	virtual ~Animal();
 	Animal(const Animal &obj);
-	Animal operator=(const Animal &obj);
+	Animal & operator=(const Animal &obj);
 
 	//======= Get and Set =========
 
@@ -25,6 +26,7 @@ public:
 	//========= Misc ==============
 
 	virtual void makeSound();
+	Brain *useBrain();
 };
 
 #endif
