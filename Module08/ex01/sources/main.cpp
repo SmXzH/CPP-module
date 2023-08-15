@@ -14,6 +14,28 @@ int main(int argc, char const *argv[])
         sp.addNumber(9);
         sp.addNumber(11);
 
+
+        sp.printArr();
+        std::cout << sp.shortestSpan() << std::endl;
+        std::cout << sp.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Error: " << e.what() << '\n';
+    }
+    try
+    {
+        Span sp = Span(5);
+        std::vector <int> vec;
+        vec.push_back(5);
+        vec.push_back(53);
+        vec.push_back(54);
+        vec.push_back(55);
+        vec.push_back(56);
+        // vec.push_back(58);
+
+
+        sp.ImpAddNum(vec);
         sp.printArr();
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;

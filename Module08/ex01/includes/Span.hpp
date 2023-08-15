@@ -22,7 +22,7 @@ class Span
         int longestSpan();
         // std::vector<int> getArr();
         void printArr();
-
+        void ImpAddNum(std::vector<int> & vec);
 };
 
 #endif

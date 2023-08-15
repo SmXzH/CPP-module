@@ -31,7 +31,7 @@ Span::Span(const unsigned int N)
 }
 
 void Span::addNumber(const int num){
-    if(_arr.size() <= this->_size)
+    if(_arr.size() < this->_size)
         this->_arr.push_back(num);
     else
         throw std::runtime_error("Span is already full");
@@ -69,5 +69,15 @@ void Span::printArr()
     for (size_t i = 0; i < this->_arr.size(); i++)
         std::cout << this->_arr[i] << " ";
     std::cout << std::endl;
+}
+
+void Span::ImpAddNum(std::vector<int> & vec)
+{
+    std::vector <int>::iterator it = vec.begin();
+    while(it != vec.end())
+    {
+        addNumber(*it);
+        ++it;
+    }
 }
 
