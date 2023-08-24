@@ -1,51 +1,74 @@
-#include <iostream>
-#include <stack>
-#include <cstdlib>
+#include "RPN.hpp"
 
-int rpn_calculate(const char* expression) {
-    std::stack<int> stack;
+RPN ::RPN ()
+{
+}
 
-    while (*expression != '\0') {
-        if (*expression >= '0' && *expression <= '9') {
-            stack.push(*expression - '0');
-        } else if (*expression == '+' || *expression == '-' || *expression == '*' || *expression == '/') {
-            if (stack.size() < 2) {
-                std::cout << "Error: Insufficient operands for operator" << std::endl;
-                return -1;
-            }
-            int operand2 = stack.top(); stack.pop();
-            int operand1 = stack.top(); stack.pop();
-            int result = 0;
-            switch (*expression) {
-                case '+':
-                    result = operand1 + operand2;
-                    break;
-                case '-':
-                    result = operand1 - operand2;
-                    break;
-                case '*':
-                    result = operand1 * operand2;
-                    break;
-                case '/':
-                    if (operand2 == 0) {
-                        std::cout << "Error: Division by zero" << std::endl;
-                        return -1;
-                    }
-                    result = operand1 / operand2;
-                    break;
-            }
-            stack.push(result);
-        } else {
-            std::cout << "Error: Invalid token: " << *expression << std::endl;
-            return -1;
-        }
-        ++expression;
-    }
+/*--------------------------------------------------------*/
+RPN::RPN (const RPN &a)
+{
+	this->operator=(a);
+}
 
-    if (stack.size() != 1) {
-        std::cout << "Error: Invalid expression" << std::endl;
-        return -1;
-    }
+/*--------------------------------------------------------*/
+RPN::~RPN ()
+{
+}
 
-    return stack.top();
+/*--------------------------------------------------------*/
+RPN & RPN::operator = (const RPN &a)
+{
+		(void)a;
+	return (*this);
+}
+
+int RPN::CalculationResult(int n1, int n2, char o)
+{
+	switch (o)
+	{
+		case '+':
+			return (n1 + n2);
+		case '-':
+			return (n2 - n1);
+		case '*':
+			return (n1 * n2);
+		case '/':
+		{
+			if (n2 == 0)
+				throw std::invalid_argument("Floating Point Exception Dividing on Zero\n");
+			return (n2 / n1);
+		}
+	}
+	return (0);
+}
+
+
+void    RPN::ReadInput(std::string input)
+{
+	std::string ope = "+/*-";
+	size_t op, num;
+	op = num = 0;
+	for (size_t i = 0; i < input.length() ; i++)
+	{
+		if (isdigit(input[i]))
+		{
+			num++;
+			this->_numbers.push(input[i] - '0');
+		}
+		else if (ope.find(input[i]) != std::string::npos)
+		{
+			op++;
+			int n1 = _numbers.top();
+			_numbers.pop();
+			_numbers.top() = CalculationResult(n1, _numbers.top(), input[i]);
+		}
+
+		else if (isspace(input[i]))
+			continue;
+		else
+			throw std::invalid_argument("Invalid Input\n");
+	}
+	if ((op + 1) != num)
+		throw std::invalid_argument("Number of operators less or greater than numbers\n");
+	std::cout << _numbers.top() << "\n";
 }

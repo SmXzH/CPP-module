@@ -1,15 +1,15 @@
-NAME 				= MutantStack
+NAME 				= RPN
 CCXX 				= c++
 FLAGS 				= -Wall -Werror -Wextra -std=c++98
 INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
 
 HEADERS_DIRECTORY 	= ./includes/
-HEADERS_LIST 		= Bitcoin.hpp
+HEADERS_LIST 		= RPN.hpp
 HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY 	= ./sources/
-SOURCES_LIST 		= main.cpp Bitcoin.cpp
+SOURCES_LIST 		= main.cpp RPN.cpp
 SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
 OBJECTS_DIRECTORY 	= objects/
