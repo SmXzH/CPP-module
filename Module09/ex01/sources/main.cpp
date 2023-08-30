@@ -3,7 +3,6 @@
 
 int main(int ac, char *av[])
 {
-    RPN obj;
     if (ac != 2)
     {
         std::cerr << "Error\n";
@@ -13,6 +12,7 @@ int main(int ac, char *av[])
     {
         try
         {
+            RPN obj;
             obj.ReadInput(av[1]);
         }
         catch(const std::exception& e)
