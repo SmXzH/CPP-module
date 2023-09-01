@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <limits>
+#include <sstream>
 
 class BitcoinExchange {
 private:
@@ -22,6 +23,7 @@ public:
 
     double findExchangeRate(const std::string& date_str) const;
     void processInputFile(const std::string& input_filename);
+    bool checkDate(std::string &);
 };
 
 #endif
