@@ -21,7 +21,7 @@ public:
     BitcoinExchange & operator=(const BitcoinExchange &);
     BitcoinExchange(const std::string& db_filename);
 
-    double findExchangeRate(const std::string& date_str) const;
+    double findExchangeRate(std::string& date_str);
     void processInputFile(const std::string& input_filename);
     bool checkDate(std::string &);
 };

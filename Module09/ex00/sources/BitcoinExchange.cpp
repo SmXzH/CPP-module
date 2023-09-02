@@ -75,19 +75,12 @@ BitcoinExchange::BitcoinExchange(const std::string& db_filename) {
     file.close();
 }
 
-double BitcoinExchange::findExchangeRate(const std::string& date_str) const {
-    double closest_rate = 0.0;
-    int closest_days = std::numeric_limits<int>::max();
-
-    for (std::map<std::string, double>::const_iterator it = btc_db.begin(); it != btc_db.end(); ++it) {
-        int days_difference = std::abs(std::atoi(it->first.c_str()) - std::atoi(date_str.c_str()));
-        if (days_difference < closest_days) {
-            closest_days = days_difference;
-            closest_rate = it->second;
-        }
-    }
-
-    return closest_rate;
+double BitcoinExchange::findExchangeRate(std::string& date_str)
+{
+    std::map<std::string, double>::iterator it = btc_db.lower_bound(date_str);
+    if (it->first >= date_str && it != btc_db.begin())
+        it--;
+    return (it->second);
 }
 
 void BitcoinExchange::processInputFile(const std::string& input_filename) {
@@ -120,13 +113,13 @@ void BitcoinExchange::processInputFile(const std::string& input_filename) {
                     std::cerr << "Error: not a positive number." << std::endl;
                     continue;
                 }
-                double exchange_rate = findExchangeRate(date_str);
                 if (value > 2147483647) {
                     std::cerr << "Error: too large a number." << std::endl;
                     continue;
                 }
+                double exchange_rate = findExchangeRate(date_str);
                 double calculated_value = value * exchange_rate;
-                std::cout << date_str << " => " << value_str << " = " << calculated_value << std::endl;
+                std::cout << date_str << " => " << value << " = " << calculated_value << std::endl;
             } catch (...) {
                 std::cerr << "Error: invalid number." << std::endl;
             }
