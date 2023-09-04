@@ -47,7 +47,7 @@ BitcoinExchange::BitcoinExchange(const std::string& db_filename) {
     std::ifstream file(db_filename.c_str());
     if (!file.is_open()) {
         std::cerr << "Error: could not open database file." << std::endl;
-        exit(1);
+        std::exit(1);
     }
 
     std::string line;
@@ -87,7 +87,7 @@ void BitcoinExchange::processInputFile(const std::string& input_filename) {
     std::ifstream input_file(input_filename.c_str());
     if (!input_file.is_open()) {
         std::cerr << "Error: could not open input file." << std::endl;
-        exit(1);
+        std::exit(1);
     }
 
     std::string line;

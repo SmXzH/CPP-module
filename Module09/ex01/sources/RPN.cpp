@@ -18,7 +18,7 @@ RPN::~RPN ()
 /*--------------------------------------------------------*/
 RPN & RPN::operator = (const RPN &a)
 {
-		(void)a;
+	(void)a;
 	return (*this);
 }
 
@@ -58,6 +58,8 @@ void    RPN::ReadInput(std::string input)
 		else if (ope.find(input[i]) != std::string::npos)
 		{
 			op++;
+			if (_numbers.size() < 2)
+        		throw std::invalid_argument("Not enough operands for operator\n");
 			int n1 = _numbers.top();
 			_numbers.pop();
 			_numbers.top() = CalculationResult(n1, _numbers.top(), input[i]);

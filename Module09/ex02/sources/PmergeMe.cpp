@@ -85,7 +85,6 @@ void PmergeMe::VectorSort()
                 prev = now - 1;
             }
         }
-        
     }
 
     //*Adding to sorted vector first numbers in the pairs* 

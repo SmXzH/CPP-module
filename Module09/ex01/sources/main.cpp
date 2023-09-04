@@ -6,7 +6,7 @@ int main(int ac, char *av[])
     if (ac != 2)
     {
         std::cerr << "Error\n";
-        exit(0);
+        return 1;
     }
     else
     {
@@ -19,6 +19,5 @@ int main(int ac, char *av[])
         {
             std::cerr << e.what();
         }
-        
     }
 }
